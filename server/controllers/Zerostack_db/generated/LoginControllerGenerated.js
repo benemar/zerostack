@@ -27,14 +27,32 @@ const generatedControllers = {
    */
   init: router => {
     const baseUrl = `${Properties.api}/login`;
+    router.post(baseUrl + "", authorize([]), LoginController.create);
     router.delete(baseUrl + "/:id", authorize([]), LoginController.delete);
+    router.get(baseUrl + "/:id", authorize([]), LoginController.get);
     router.get(baseUrl + "", authorize([]), LoginController.list);
+    router.post(baseUrl + "/:id", authorize([]), LoginController.update);
   },
 
 
   // CRUD METHODS
 
 
+  /**
+  * loginModel.create
+  *   @description CRUD ACTION create
+  *
+  */
+  create: async (req, res) => {
+    try {
+      const result = await LoginModel.create(req.body);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
   /**
   * loginModel.delete
   *   @description CRUD ACTION delete
@@ -44,6 +62,22 @@ const generatedControllers = {
   delete: async (req, res) => {
     try {
       const result = await LoginModel.delete(req.params.id);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * loginModel.get
+  *   @description CRUD ACTION get
+  *   @param ObjectId id Id resource
+  *
+  */
+  get: async (req, res) => {
+    try {
+      const result = await LoginModel.get(req.params.id);
       res.json(result);
     } catch (err) {
       const safeErr = ErrorManager.getSafeError(err);
@@ -66,6 +100,22 @@ const generatedControllers = {
     }
   },
   
+  
+  /**
+  * loginModel.update
+  *   @description CRUD ACTION update
+  *   @param ObjectId id Id
+  *
+  */
+  update: async (req, res) => {
+    try {
+      const result = await LoginModel.update(req.body);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
   
   
   // Custom APIs

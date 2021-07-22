@@ -59,6 +59,17 @@ export class LoginBaseService {
     // CRUD METHODS
 
     /**
+    * loginService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Login): Observable<Login> {
+        return this.http
+            .post<Login>(this.contextUrl, item)
+            .pipe(map(data => data));
+    }
+
+    /**
     * loginService.delete
     *   @description CRUD ACTION delete
     *   @param ObjectId id Id
@@ -71,6 +82,18 @@ export class LoginBaseService {
     }
 
     /**
+    * loginService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id resource
+    *
+    */
+    get(id: string): Observable<Login> {
+        return this.http
+            .get<Login>(this.contextUrl + '/' + id)
+            .pipe(map(data => data));
+    }
+
+    /**
     * loginService.list
     *   @description CRUD ACTION list
     *
@@ -78,6 +101,18 @@ export class LoginBaseService {
     list(): Observable<Login[]> {
         return this.http
             .get<Login[]>(this.contextUrl)
+            .pipe(map(data => data));
+    }
+
+    /**
+    * loginService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(item: Login): Observable<Login> {
+        return this.http
+            .post<Login>(this.contextUrl + '/' + item._id, item)
             .pipe(map(data => data));
     }
 

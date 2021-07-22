@@ -75,6 +75,16 @@ const generatedModel = {
 
 
   /**
+  * loginModel.create
+  *   @description CRUD ACTION create
+  *
+  */
+  async create(item) {
+    const obj = new generatedModel.model(item);
+    return await obj.save();
+  },
+  
+  /**
   * loginModel.delete
   *   @description CRUD ACTION delete
   *   @param ObjectId id Id
@@ -85,12 +95,32 @@ const generatedModel = {
   },
   
   /**
+  * loginModel.get
+  *   @description CRUD ACTION get
+  *   @param ObjectId id Id resource
+  *
+  */
+  async get(id) {
+    return await generatedModel.model.findOne({ _id : id });
+  },
+  
+  /**
   * loginModel.list
   *   @description CRUD ACTION list
   *
   */
   async list() {
     return await generatedModel.model.find();
+  },
+  
+  /**
+  * loginModel.update
+  *   @description CRUD ACTION update
+  *   @param ObjectId id Id
+  *
+  */
+  async update(item) { 
+    return await generatedModel.model.findOneAndUpdate({ _id: item._id }, item, {'new': true});
   },
   
 

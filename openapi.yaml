@@ -255,6 +255,64 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/User"
+  /login:
+    post:
+      x-skaffolder-id: 60f9709f53cf51415ea6b562
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 60f96fc653cf51415ea6b556
+      x-skaffolder-resource: login
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - login
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                username:
+                  type: string
+    get:
+      x-skaffolder-id: 60f96fd653cf51415ea6b559
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 60f96fc653cf51415ea6b556
+      x-skaffolder-resource: login
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - login
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/login"
   "/login/{id}":
     delete:
       x-skaffolder-id: 60f96fd653cf51415ea6b55a
@@ -282,31 +340,72 @@ paths:
       responses:
         "200":
           description: OK
-  /login:
     get:
-      x-skaffolder-id: 60f96fd653cf51415ea6b559
-      x-skaffolder-name: list
+      x-skaffolder-id: 60f9709f53cf51415ea6b563
+      x-skaffolder-name: get
       x-skaffolder-id-resource: 60f96fc653cf51415ea6b556
       x-skaffolder-resource: login
-      x-skaffolder-crudAction: list
+      x-skaffolder-crudAction: get
       x-skaffolder-crudType: 
-      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-description: CRUD ACTION get
       x-skaffolder-returnDesc: 
       x-skaffolder-returnType: 
-      x-skaffolder-url: /
+      x-skaffolder-url: /{id}
       x-skaffolder-roles: []
-      summary: CRUD ACTION list
+      summary: CRUD ACTION get
       tags:
         - login
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/login"
+                $ref: "#/components/schemas/login"
+    post:
+      x-skaffolder-id: 60f9709f53cf51415ea6b564
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 60f96fc653cf51415ea6b556
+      x-skaffolder-resource: login
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - login
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
 security:
   - bearerAuth: []
 components:
@@ -392,6 +491,19 @@ components:
       x-skaffolder-resource: 
       x-skaffolder-services: 
       x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 60f96fde53cf51415ea6b55c
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 60f9709f53cf51415ea6b561
+      x-skaffolder-name: loginEdit
+      x-skaffolder-url: /logins/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 60f96fc653cf51415ea6b556
+      x-skaffolder-services:
+        - 60f9709f53cf51415ea6b562
+        - 60f9709f53cf51415ea6b564
+        - 60f9709f53cf51415ea6b563
+      x-skaffolder-nesteds: 
       x-skaffolder-links: 
       x-skaffolder-roles: []
     - x-skaffolder-id: 60f96fde53cf51415ea6b55c
@@ -400,10 +512,11 @@ components:
       x-skaffolder-template: List_Crud
       x-skaffolder-resource: 60f96fc653cf51415ea6b556
       x-skaffolder-services:
-        - 60f96fd653cf51415ea6b559
         - 60f96fd653cf51415ea6b55a
+        - 60f96fd653cf51415ea6b559
       x-skaffolder-nesteds: 
-      x-skaffolder-links: 
+      x-skaffolder-links:
+        - 60f9709f53cf51415ea6b561
       x-skaffolder-roles: []
   x-skaffolder-roles: 
     - x-skaffolder-id: 60f96e9d53cf51415ea6b4c9

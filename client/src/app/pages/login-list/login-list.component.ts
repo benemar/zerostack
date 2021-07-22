@@ -7,12 +7,12 @@ import { Login } from '../../domain/zerostack_db/login';
 
 // START - USED SERVICES
 /**
-* loginService.list
-*	@description CRUD ACTION list
-*
 * loginService.delete
 *	@description CRUD ACTION delete
 *	@param ObjectId id Id
+*
+* loginService.list
+*	@description CRUD ACTION list
 *
 */
 // END - USED SERVICES
